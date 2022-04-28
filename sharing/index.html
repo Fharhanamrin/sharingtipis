@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="name" name="oke" />
+    <input type="submit" value="submit" id="submit" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        getDataFakeApi();
+        // getPostFakeApi();
+        // getPutFakeApi();
+        getDeleteFakeApi();
+      });
+
+      //motode get
+      const getDataFakeApi = async () => {
+        $.ajax({
+          type: "get",
+          url: "https://jsonplaceholder.typicode.com/posts/1",
+          dataType: "JSON",
+          success: function (response) {
+            console.log("", response);
+          },
+        });
+      };
+
+      //   metode post
+      const getPostFakeApi = async () => {
+        $("#submit").click(function (e) {
+          e.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: "https://jsonplaceholder.typicode.com/posts",
+            data: {
+              title: "hello world",
+              body: "hello world body",
+              userId: 1,
+            },
+            dataType: "JSON",
+            success: function (response) {
+              console.log("response post", response);
+            },
+          });
+        });
+      };
+
+      //metode PUT
+      const getPutFakeApi = async () => {
+        $("#submit").click(function (e) {
+          e.preventDefault();
+          $.ajax({
+            type: "PUT",
+            url: "https://jsonplaceholder.typicode.com/posts/1",
+            data: {
+              id: 1,
+              title: "foo",
+              body: "bar",
+              userId: 1,
+            },
+            dataType: "JSON",
+            success: function (response) {
+              console.log("response put", response);
+            },
+          });
+        });
+      };
+
+      //metode DELETE
+      const getDeleteFakeApi = async () => {
+        $("#submit").click(function (e) {
+          e.preventDefault();
+          $.ajax({
+            type: "DELETE",
+            url: "https://jsonplaceholder.typicode.com/posts/1",
+            dataType: "JSON",
+            success: function (response) {
+              console.log("response Delete", response);
+            },
+          });
+        });
+      };
+    </script>
+  </body>
+</html>
